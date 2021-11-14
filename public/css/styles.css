@@ -15,7 +15,6 @@
 #btn_return{
     margin-left: 100px;
 }
-
 /* new.html */
 #input_title{
     width: 500px;
@@ -27,3 +26,23 @@
     height: 300px;
     min-height: 300px;
 }
+
+
+/* detail.html */
+#view_title {
+    width: 500px;
+    background-color: rgb(245, 245, 245);
+}
+
+#view_content {
+    width: 500px;
+    min-width: 500px;
+    height: 300px;
+    min-height: 300px;
+    background-color: rgb(245, 245, 245);
+}
+
+#btn_delete{
+margin-left: 40px;
+}
+
