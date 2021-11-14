@@ -1,0 +1,28 @@
+.h-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.v-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* index.html */
+#btn_new{
+    margin-left: 100px;
+}
+
+/* new.html */
+#input_title{
+    width: 500px;
+}
+
+#input_content{
+    width: 500px;
+    min-width: 500px;
+    height: 300px;
+    min-height: 300px;
+}
