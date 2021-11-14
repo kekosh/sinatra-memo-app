@@ -11,7 +11,8 @@
 }
 
 /* index.html */
-#btn_new{
+#btn_new,
+#btn_return{
     margin-left: 100px;
 }
 
