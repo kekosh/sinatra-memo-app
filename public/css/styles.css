@@ -46,3 +46,14 @@
 margin-left: 40px;
 }
 
+/* edit.html */
+#edit_title {
+    width: 500px;
+}
+
+#edit_content {
+    width: 500px;
+    min-width: 500px;
+    height: 300px;
+    min-height: 300px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../public/css/styles.css" />
+    <title>memo-app</title>
+  </head>
+  <body>
+    <!-- メインヘッダー -->
+    <div>
+      <header><h1>メモアプリ</h1></header>
+    </div>
+    <!-- ページヘッダー -->
+    <div class="h-container">
+      <h2>変更</h2>
+      <form action="index.html" method="GET">
+        <input type="submit" id="btn_return" value="戻る" />
+      </form>
+    </div>
+    <!-- コンテンツ -->
+    <section>
+      <form action="index.html" method="GET">
+        <div class="v-container">
+          <label for="edit_title">タイトル</label>
+          <input type="text name="edit_title" id="edit_title" required>
+        </div>
+        <div class="v-container">
+          <label for="edit_content">内容</label>
+          <textarea
+            name="edit_content"
+            id="edit_content"
+            cols="50"
+            rows="10"
+            wrap="soft"
+          ></textarea>
+        </div>
+        <input type="submit" id="btn_regist" value="登録" />
+      </form>
+    </section>
+  </body>
+</html>
