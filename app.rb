@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'securerandom'
+require 'json'
 
 get '/index' do
   erb :index
@@ -16,7 +17,12 @@ post '/regist' do
   @id = SecureRandom.uuid
   @registered_at = Time.now.strftime("%Y%m%d%T")
 
-  p @registered_at
+  data = JSON.dump({
+    "id": @id,
+    "title": @title,
+    "content": @content,
+    "registered_at": @registered_at
+  })
 
   redirect to("/index")
 end
