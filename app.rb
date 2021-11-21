@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'securerandom'
 require 'json'
+require 'Rack'
 
 configure do
   enable :method_override
@@ -18,6 +19,10 @@ helpers do
 
   def save_data(array_data)
     File.open('data.json', 'w') { |file| JSON.dump(array_data, file) }
+  end
+
+  def escape_html(str)
+    Rack::Utils.escape_html(str)
   end
 
 end

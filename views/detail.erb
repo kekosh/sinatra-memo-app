@@ -24,7 +24,7 @@
     <section>
       <div class="v-container">
         <label for="view_title">タイトル</label>
-        <input type="text name="view_title" id="view_title" value=<%= @title %> readonly>
+        <input type="text name="view_title" id="view_title" value=<%= escape_html(@title) %> readonly>
       </div>
       <div class="v-container">
         <label for="view_content">内容</label>
@@ -35,7 +35,7 @@
           rows="10"
           wrap="soft"
           readonly
-        ><%= @content %></textarea>
+        ><%= escape_html(@content) %></textarea>
       </div>
     </section>
     <!-- ボタン -->

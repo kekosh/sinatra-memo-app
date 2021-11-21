@@ -24,7 +24,7 @@
     <section>
       <ul>
         <% @data_list.each do |memo| %>
-        <li><a href="/detail/<%= memo['id'] %>"><%= memo['title'] %></a></li>
+        <li><a href="/detail/<%= memo['id'] %>"><%= escape_html(memo['title']) %></a></li>
         <% end %>
       </ul>
     </section>
