@@ -16,11 +16,5 @@
     "title": "test",
     "content": "tset",
     "registered_at": "2021-11-21 21:34:36"
-  },
-  {
-    "id": "e119a5fe-7d4c-439a-8e9f-79d421b28a7b",
-    "title": "test2",
-    "content": "testdata",
-    "registered_at": "2021-11-21 21:51:25"
   }
 ]

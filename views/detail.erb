@@ -40,11 +40,12 @@
     </section>
     <!-- ボタン -->
     <section class="h-container">
-      <form action="/edit/:id" method="GET">
+      <form action="/edit/<%= @id %>" method="GET">
         <input type="submit" name="btn_edit" id="btn_edit" value="変更" />
       </form>
-      <form action="/delete/:id" method="GET">
+      <form action="/delete/<%= @id %>" method="POST">
         <input type="submit" name="btn_delete" id="btn_delete" value="削除" />
+        <input type="hidden" name="_method" value="DELETE">
       </form>
     </section>
   </body>

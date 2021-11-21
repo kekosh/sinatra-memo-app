@@ -5,12 +5,21 @@ require 'sinatra/reloader'
 require 'securerandom'
 require 'json'
 
+configure do
+  enable :method_override
+end
+
 helpers do
   def read_data
     File.open('data.json', 'r') do |f|
       JSON.parse(f.read)
     end
   end
+
+  def save_data(array_data)
+    File.open('data.json', 'w') { |file| JSON.dump(array_data, file) }
+  end
+
 end
 
 get '/index' do
@@ -56,7 +65,20 @@ post '/regist' do
   end
 
   @data_list.push(new_data)
-  File.open('data.json', 'w') { |file| JSON.dump(@data_list, file) }
+  save_data(@data_list)
+
+  redirect to('/index')
+end
+
+delete '/delete/:id' do
+  @data_list = read_data
+  @data_list.each_with_index do |data, idx|
+    if data['id'] == params['id']
+      @data_list.delete_at idx
+    end
+  end
+
+  save_data(@data_list)
 
   redirect to('/index')
 end
