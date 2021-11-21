@@ -23,11 +23,9 @@
     <!-- コンテンツ -->
     <section>
       <ul>
-        <li><a href="detail.html">data１</a></li>
-        <li>data2</li>
-        <li>data3</li>
-        <li>data4</li>
-        <li>data5</li>
+        <% @data_list.each do |memo| %>
+        <li><a href="/detail/<%= memo['id'] %>"><%= memo['title'] %></a></li>
+        <% end %>
       </ul>
     </section>
   </body>

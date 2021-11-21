@@ -6,19 +6,34 @@ require 'securerandom'
 require 'json'
 
 helpers do
-  def read_data(file)
-    File.open(file, 'r') do |f|
+  def read_data
+    File.open('data.json', 'r') do |f|
       JSON.parse(f.read)
     end
   end
 end
 
 get '/index' do
+  @data_list = read_data
   erb :index
 end
 
 get '/new' do
   erb :new
+end
+
+get '/detail/:id' do
+
+  read_data.each do |data|
+    if data['id'] == params['id']
+      @id = data['id']
+      @title = data['title']
+      @content = data['content']
+    end
+  end
+
+  erb :detail
+
 end
 
 post '/regist' do
@@ -35,7 +50,7 @@ post '/regist' do
   }
 
   begin
-    @data_list = read_data('data.json')
+    @data_list = read_data
   rescue JSON::ParserError
     @data_list = []
   end
