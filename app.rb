@@ -24,7 +24,6 @@ helpers do
   def escape_html(str)
     Rack::Utils.escape_html(str)
   end
-
 end
 
 get '/index' do
@@ -37,17 +36,15 @@ get '/new' do
 end
 
 get '/detail/:id' do
-
   read_data.each do |data|
-    if data['id'] == params['id']
-      @id = data['id']
-      @title = data['title']
-      @content = data['content']
-    end
+    next if data['id'] != params['id']
+
+    @id = data['id']
+    @title = data['title']
+    @content = data['content']
   end
 
   erb :detail
-
 end
 
 post '/regist' do
@@ -71,19 +68,17 @@ post '/regist' do
 
   @data_list.push(new_data)
   save_data(@data_list)
-
   redirect to('/index')
 end
 
 delete '/delete/:id' do
   @data_list = read_data
   @data_list.each_with_index do |data, idx|
-    if data['id'] == params['id']
-      @data_list.delete_at idx
-    end
+    next if data['id'] != params['id']
+
+    @data_list.delete_at idx
   end
 
   save_data(@data_list)
-
   redirect to('/index')
 end
