@@ -1,52 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-    <title>memo-app</title>
-  </head>
-  <body>
-    <!-- メインヘッダー -->
-    <div>
-      <header><h1>メモアプリ</h1></header>
+<body>
+  <!-- メインヘッダー -->
+  <div>
+    <header><h1>メモアプリ</h1></header>
+  </div>
+  <!-- ページヘッダー -->
+  <div class="h-container">
+    <h2>詳細</h2>
+    <form action="/index" method="GET">
+      <input type="submit" id="btn_return" value="戻る" />
+    </form>
+  </div>
+  <!-- コンテンツ -->
+  <!-- データ表示 -->
+  <section>
+    <div class="v-container">
+      <label for="view_title">タイトル</label>
+      <input type="text name="view_title" id="view_title" value=<%= escape_html(@title) %> readonly>
     </div>
-    <!-- ページヘッダー -->
-    <div class="h-container">
-      <h2>詳細</h2>
-      <form action="/index" method="GET">
-        <input type="submit" id="btn_return" value="戻る" />
-      </form>
+    <div class="v-container">
+      <label for="view_content">内容</label>
+      <textarea
+        name="view_content"
+        id="view_content"
+        cols="50"
+        rows="10"
+        wrap="soft"
+        readonly
+      ><%= escape_html(@content) %></textarea>
     </div>
-    <!-- コンテンツ -->
-    <!-- データ表示 -->
-    <section>
-      <div class="v-container">
-        <label for="view_title">タイトル</label>
-        <input type="text name="view_title" id="view_title" value=<%= escape_html(@title) %> readonly>
-      </div>
-      <div class="v-container">
-        <label for="view_content">内容</label>
-        <textarea
-          name="view_content"
-          id="view_content"
-          cols="50"
-          rows="10"
-          wrap="soft"
-          readonly
-        ><%= escape_html(@content) %></textarea>
-      </div>
-    </section>
-    <!-- ボタン -->
-    <section class="h-container">
-      <form action="/edit/<%= @id %>" method="GET">
-        <input type="submit" name="btn_edit" id="btn_edit" value="変更" />
-      </form>
-      <form action="/delete/<%= @id %>" method="POST">
-        <input type="submit" name="btn_delete" id="btn_delete" value="削除" />
-        <input type="hidden" name="_method" value="DELETE">
-      </form>
-    </section>
-  </body>
-</html>
+  </section>
+  <!-- ボタン -->
+  <section class="h-container">
+    <form action="/edit/<%= @id %>" method="GET">
+      <input type="submit" name="btn_edit" id="btn_edit" value="変更" />
+    </form>
+    <form action="/delete/<%= @id %>" method="POST">
+      <input type="submit" name="btn_delete" id="btn_delete" value="削除" />
+      <input type="hidden" name="_method" value="DELETE">
+    </form>
+  </section>
+</body>
