@@ -17,7 +17,14 @@ end
 helpers do
   def read_data
     File.open('data.json', 'r') do |f|
-      JSON.parse(f.read)
+      file_data = f.read
+
+      [] if file_data.size.zero?
+      begin
+        JSON.parse(file_data)
+      rescue JSON::ParserError
+        []
+      end
     end
   end
 
@@ -30,16 +37,16 @@ helpers do
   end
 end
 
-get '/index' do
+get '/memo/index' do
   @data_list = read_data
   erb :index
 end
 
-get '/new' do
+get '/memo/new' do
   erb :new
 end
 
-get '/detail/:id' do
+get '/memo/:id/detail' do
   read_data.each do |data|
     next if data['id'] != params['id']
 
@@ -51,7 +58,7 @@ get '/detail/:id' do
   erb :detail
 end
 
-post '/regist' do
+post '/memo/regist' do
   @title = params['input_title']
   @content = params['input_content']
   @id = SecureRandom.uuid
@@ -72,10 +79,10 @@ post '/regist' do
 
   @data_list.push(new_data)
   save_data(@data_list)
-  redirect to('/index')
+  redirect to('/memo/index')
 end
 
-delete '/delete/:id' do
+delete '/memo/:id/delete' do
   @data_list = read_data
   @data_list.each_with_index do |data, idx|
     next if data['id'] != params['id']
@@ -84,10 +91,10 @@ delete '/delete/:id' do
   end
 
   save_data(@data_list)
-  redirect to('/index')
+  redirect to('/memo/index')
 end
 
-get '/edit/:id' do
+get '/memo/:id/edit' do
   @data_list = read_data
   @data = @data_list.find { |data| data['id'] == params['id'] }
 
@@ -98,7 +105,7 @@ get '/edit/:id' do
   erb :edit
 end
 
-patch '/edit/:id' do
+patch '/memo/:id/edit' do
   @data_list = read_data
   @data_list.each do |data|
     next if data['id'] != params['id']
@@ -109,5 +116,5 @@ patch '/edit/:id' do
   end
 
   save_data(@data_list)
-  redirect to('/index')
+  redirect to('/memo/index')
 end

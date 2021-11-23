@@ -6,13 +6,13 @@
   <!-- ページヘッダー -->
   <div class="h-container">
     <h2>変更</h2>
-    <form action="/index" method="GET">
-      <input type="submit" id="btn_return" value="戻る" />
+    <form action="/memo/index" method="GET">
+      <button type="submit" id="btn_return">キャンセル</button>
     </form>
   </div>
   <!-- コンテンツ -->
   <section>
-    <form action="/edit/<%= @id %>" method="POST">
+    <form action="/memo/<%= @id %>/edit" method="POST">
       <div class="v-container">
         <label for="edit_title">タイトル</label>
         <input type="text" name="edit_title" id="edit_title" value=<%= escape_html(@title) %> required>
