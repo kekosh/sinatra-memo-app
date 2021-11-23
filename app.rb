@@ -37,6 +37,14 @@ helpers do
   end
 end
 
+get '/' do
+  redirect to('/memo/index')
+end
+
+get '/memo' do
+  redirect to('/memo/index')
+end
+
 get '/memo/index' do
   @data_list = read_data
   erb :index
