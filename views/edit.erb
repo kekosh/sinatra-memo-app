@@ -25,7 +25,7 @@
           cols="50"
           rows="10"
           wrap="soft"
-        ><%= @content %></textarea>
+        ><%= escape_html(@content) %></textarea>
       </div>
       <input type="submit" id="btn_regist" value="登録" />
       <!-- <input type="hidden" name="edit_id" value=<%= @id %>> -->
