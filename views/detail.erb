@@ -31,10 +31,10 @@
   </section>
   <!-- ボタン -->
   <section class="h-container">
-    <form action="/memo/<%= @id %>/edit" method="GET">
+    <form action="/memo/<%= @id %>" method="GET">
       <button type="submit" name="btn_edit" id="btn_edit">変更</button>
     </form>
-    <form action="/memo/<%= @id %>/delete" method="POST">
+    <form action="/memo/<%= @id %>" method="POST">
       <button type="submit" name="btn_delete" id="btn_delete">削除</button>
       <input type="hidden" name="_method" value="DELETE">
     </form>

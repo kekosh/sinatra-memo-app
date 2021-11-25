@@ -54,19 +54,7 @@ get '/memo/new' do
   erb :new
 end
 
-get '/memo/:id/detail' do
-  read_data.each do |data|
-    next if data['id'] != params['id']
-
-    @id = data['id']
-    @title = data['title']
-    @content = data['content']
-  end
-
-  erb :detail
-end
-
-post '/memo/regist' do
+post '/memo/new' do
   @title = params['input_title']
   @content = params['input_content']
   @id = SecureRandom.uuid
@@ -90,7 +78,19 @@ post '/memo/regist' do
   redirect to('/memo/index')
 end
 
-delete '/memo/:id/delete' do
+get '/memo/:id/detail' do
+  read_data.each do |data|
+    next if data['id'] != params['id']
+
+    @id = data['id']
+    @title = data['title']
+    @content = data['content']
+  end
+
+  erb :detail
+end
+
+delete '/memo/:id' do
   @data_list = read_data
   @data_list.each_with_index do |data, idx|
     next if data['id'] != params['id']
@@ -102,7 +102,7 @@ delete '/memo/:id/delete' do
   redirect to('/memo/index')
 end
 
-get '/memo/:id/edit' do
+get '/memo/:id' do
   @data_list = read_data
   @data = @data_list.find { |data| data['id'] == params['id'] }
 
@@ -113,7 +113,7 @@ get '/memo/:id/edit' do
   erb :edit
 end
 
-patch '/memo/:id/edit' do
+patch '/memo/:id' do
   @data_list = read_data
   @data_list.each do |data|
     next if data['id'] != params['id']
