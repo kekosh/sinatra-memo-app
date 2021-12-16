@@ -38,23 +38,19 @@ helpers do
 end
 
 get '/' do
-  redirect to('/memo/index')
+  redirect to('/memos')
 end
 
-get '/memo' do
-  redirect to('/memo/index')
-end
-
-get '/memo/index' do
+get '/memos' do
   @data_list = read_data
   erb :index
 end
 
-get '/memo/new' do
+get '/memos/new' do
   erb :new
 end
 
-post '/memo/new' do
+post '/memos' do
   @title = params['input_title']
   @content = params['input_content']
   @id = SecureRandom.uuid
@@ -75,13 +71,13 @@ post '/memo/new' do
 
   @data_list.push(new_data)
   save_data(@data_list)
-  redirect to('/memo/index')
+  redirect to('/memos')
 end
 
-get '/memo/:id/detail' do
+get '/memos/:id' do
   read_data.each do |data|
     next if data['id'] != params['id']
-
+    # 2021-12-16 :idがなんでも受け入れるので、"memos/test"みたいな存在しないリソースを指定しても動作してしまう
     @id = data['id']
     @title = data['title']
     @content = data['content']
@@ -90,7 +86,7 @@ get '/memo/:id/detail' do
   erb :detail
 end
 
-delete '/memo/:id' do
+delete '/memos/:id' do
   @data_list = read_data
   @data_list.each_with_index do |data, idx|
     next if data['id'] != params['id']
@@ -99,10 +95,10 @@ delete '/memo/:id' do
   end
 
   save_data(@data_list)
-  redirect to('/memo/index')
+  redirect to('/memos')
 end
 
-get '/memo/:id' do
+get '/memos/:id/edit' do
   @data_list = read_data
   @data = @data_list.find { |data| data['id'] == params['id'] }
 
@@ -113,7 +109,7 @@ get '/memo/:id' do
   erb :edit
 end
 
-patch '/memo/:id' do
+patch '/memos/:id/edit' do
   @data_list = read_data
   @data_list.each do |data|
     next if data['id'] != params['id']
@@ -124,5 +120,5 @@ patch '/memo/:id' do
   end
 
   save_data(@data_list)
-  redirect to('/memo/index')
+  redirect to('/memos')
 end

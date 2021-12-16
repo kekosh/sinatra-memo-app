@@ -6,7 +6,7 @@
   <!-- ページヘッダー -->
   <div class="h-container">
     <h2>詳細</h2>
-    <form action="/memo/index" method="GET">
+    <form action="/memos" method="GET">
       <button type="submit" id="btn_return">戻る</button>
     </form>
   </div>
@@ -31,10 +31,10 @@
   </section>
   <!-- ボタン -->
   <section class="h-container">
-    <form action="/memo/<%= @id %>" method="GET">
+    <form action="/memos/<%= @id %>/edit" method="GET">
       <button type="submit" name="btn_edit" id="btn_edit">変更</button>
     </form>
-    <form action="/memo/<%= @id %>" method="POST">
+    <form action="/memos/<%= @id %>" method="POST">
       <button type="submit" name="btn_delete" id="btn_delete">削除</button>
       <input type="hidden" name="_method" value="DELETE">
     </form>
