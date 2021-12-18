@@ -50,33 +50,23 @@ get '/memos/new' do
 end
 
 post '/memos' do
-  @title = params['input_title']
-  @content = params['input_content']
-  @id = SecureRandom.uuid
-  @registered_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-
   new_data = {
-    "id": @id,
-    "title": @title,
-    "content": @content,
-    "registered_at": @registered_at
+    "id": SecureRandom.uuid,
+    "title": params['input_title'],
+    "content": params['input_content'],
+    "registered_at": Time.now.strftime('%Y-%m-%d %H:%M:%S')
   }
 
-  begin
-    @data_list = read_data
-  rescue JSON::ParserError
-    @data_list = []
-  end
-
-  @data_list.push(new_data)
-  save_data(@data_list)
+  data_list = read_data
+  data_list.push(new_data)
+  save_data(data_list)
   redirect to('/memos')
 end
 
 get '/memos/:id' do
   read_data.each do |data|
     next if data['id'] != params['id']
-    # 2021-12-16 :idがなんでも受け入れるので、"memos/test"みたいな存在しないリソースを指定しても動作してしまう
+
     @id = data['id']
     @title = data['title']
     @content = data['content']
