@@ -19,7 +19,6 @@ helpers do
     File.open('data.json', 'r') do |f|
       file_data = f.read
 
-      [] if file_data.size.zero?
       begin
         JSON.parse(file_data)
       rescue JSON::ParserError
