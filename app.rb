@@ -76,31 +76,31 @@ get '/memos/:id' do
 end
 
 delete '/memos/:id' do
-  @data_list = read_data
-  @data_list.each do |record|
+  data_list = read_data
+  data_list.each do |record|
     next if record['id'] != params['id']
 
-    @data_list.delete_at(@data_list.find_index(record))
+    data_list.delete_at(data_list.find_index(record))
   end
 
-  save_data(@data_list)
+  save_data(data_list)
   redirect to('/memos')
 end
 
 get '/memos/:id/edit' do
-  @data_list = read_data
-  @data = @data_list.find { |data| data['id'] == params['id'] }
+  data_list = read_data
+  data = data_list.find { |data| data['id'] == params['id'] }
 
   @id = params['id']
-  @title = @data['title']
-  @content = @data['content']
+  @title = data['title']
+  @content = data['content']
 
   erb :edit
 end
 
 patch '/memos/:id/edit' do
-  @data_list = read_data
-  @data_list.each do |data|
+  data_list = read_data
+  data_list.each do |data|
     next if data['id'] != params['id']
 
     data['title'] = params['edit_title']
@@ -108,6 +108,6 @@ patch '/memos/:id/edit' do
     data['registered_at'] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
   end
 
-  save_data(@data_list)
+  save_data(data_list)
   redirect to('/memos')
 end
