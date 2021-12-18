@@ -88,10 +88,10 @@ end
 
 delete '/memos/:id' do
   @data_list = read_data
-  @data_list.each_with_index do |data, idx|
-    next if data['id'] != params['id']
+  @data_list.each do |record|
+    next if record['id'] != params['id']
 
-    @data_list.delete_at idx
+    @data_list.delete_at(@data_list.find_index(record))
   end
 
   save_data(@data_list)
