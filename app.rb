@@ -63,7 +63,7 @@ post '/memos' do
   redirect to('/memos')
 end
 
-get '/memos/:id' do
+get '/memos/:id/detail' do
   read_data.each do |data|
     next if data['id'] != params['id']
 
@@ -98,7 +98,7 @@ get '/memos/:id/edit' do
   erb :edit
 end
 
-patch '/memos/:id/edit' do
+patch '/memos/:id' do
   data_list = read_data
   data_list.each do |data|
     next if data['id'] != params['id']
