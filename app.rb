@@ -63,7 +63,7 @@ post '/memos' do
   redirect to('/memos')
 end
 
-get '/memos/:id/detail' do
+get '/memos/:id' do
   read_data.each do |data|
     next if data['id'] != params['id']
 
@@ -72,7 +72,11 @@ get '/memos/:id/detail' do
     @content = data['content']
   end
 
-  erb :detail
+  if @id.nil?
+    erb :notfound
+  else
+    erb :detail
+  end
 end
 
 delete '/memos/:id' do
@@ -89,7 +93,7 @@ end
 
 get '/memos/:id/edit' do
   data_list = read_data
-  data = data_list.find { |data| data['id'] == params['id'] }
+  data = data_list.find { |memo| memo['id'] == params['id'] }
 
   @id = params['id']
   @title = data['title']
