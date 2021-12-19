@@ -15,7 +15,7 @@
   <section>
     <div class="v-container">
       <label for="view_title">タイトル</label>
-      <input type="text" name="view_title" id="view_title" value=<%= escape_html(@title) %> readonly>
+      <input type="text" name="view_title" id="view_title" value=<%= escape_html(@memo['title']) %> readonly>
     </div>
     <div class="v-container">
       <label for="view_content">内容</label>
@@ -26,15 +26,15 @@
         rows="10"
         wrap="soft"
         readonly
-      ><%= escape_html(@content) %></textarea>
+      ><%= escape_html(@memo['content']) %></textarea>
     </div>
   </section>
   <!-- ボタン -->
   <section class="h-container">
-    <form action="/memos/<%= @id %>/edit" method="GET">
+    <form action="/memos/<%= @memo['id'] %>/edit" method="GET">
       <button type="submit" name="btn_edit" id="btn_edit">変更</button>
     </form>
-    <form action="/memos/<%= @id %>" method="POST">
+    <form action="/memos/<%= @memo['id'] %>" method="POST">
       <button type="submit" name="btn_delete" id="btn_delete">削除</button>
       <input type="hidden" name="_method" value="DELETE">
     </form>

@@ -64,15 +64,9 @@ post '/memos' do
 end
 
 get '/memos/:id' do
-  read_data.each do |data|
-    next if data['id'] != params['id']
+  @memo = read_data.find { |record| record['id'] == params['id'] }
 
-    @id = data['id']
-    @title = data['title']
-    @content = data['content']
-  end
-
-  if @id.nil?
+  if @memo.nil?
     erb :notfound
   else
     erb :detail
@@ -92,12 +86,7 @@ delete '/memos/:id' do
 end
 
 get '/memos/:id/edit' do
-  data_list = read_data
-  data = data_list.find { |memo| memo['id'] == params['id'] }
-
-  @id = params['id']
-  @title = data['title']
-  @content = data['content']
+  @memo = read_data.find { |record| record['id'] == params['id'] }
 
   erb :edit
 end

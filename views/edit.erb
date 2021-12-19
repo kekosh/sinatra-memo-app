@@ -12,10 +12,10 @@
   </div>
   <!-- コンテンツ -->
   <section>
-    <form action="/memos/<%= @id %>" method="POST">
+    <form action="/memos/<%= @memo['id'] %>" method="POST">
       <div class="v-container">
         <label for="edit_title">タイトル</label>
-        <input type="text" name="edit_title" id="edit_title" value=<%= escape_html(@title) %> required>
+        <input type="text" name="edit_title" id="edit_title" value=<%= escape_html(@memo['title']) %> required>
       </div>
       <div class="v-container">
         <label for="edit_content">内容</label>
@@ -25,7 +25,7 @@
           cols="50"
           rows="10"
           wrap="soft"
-        ><%= escape_html(@content) %></textarea>
+        ><%= escape_html(@memo['content']) %></textarea>
       </div>
       <button type="submit" id="btn_regist">登録</button>
       <input type="hidden" name="_method" value="PATCH">
