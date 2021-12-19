@@ -75,11 +75,7 @@ end
 
 delete '/memos/:id' do
   data_list = read_data
-  data_list.each do |record|
-    next if record['id'] != params['id']
-
-    data_list.delete_at(data_list.find_index(record))
-  end
+  data_list.delete_at(data_list.find_index { |record| record['id'] == params['id'] })
 
   save_data(data_list)
   redirect to('/memos')
@@ -93,13 +89,11 @@ end
 
 patch '/memos/:id' do
   data_list = read_data
-  data_list.each do |data|
-    next if data['id'] != params['id']
-
-    data['title'] = params['edit_title']
-    data['content'] = params['edit_content']
-    data['registered_at'] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-  end
+  target_index = data_list.find_index { |record| record['id'] == params['id'] }
+  change_data = data_list[target_index]
+  change_data['title'] = params['edit_title']
+  change_data['content'] = params['edit_content']
+  change_data['registerd_at'] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 
   save_data(data_list)
   redirect to('/memos')
