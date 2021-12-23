@@ -51,7 +51,6 @@ class Database
     w_sql = 'UPDATE memos SET title = $1, contents = $2, registered_at = $3 WHERE id = $4'
     db_connect.exec(w_sql, [title, contents, registerd_at, id])
   end
-
 end
 
 helpers do
