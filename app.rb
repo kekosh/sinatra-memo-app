@@ -15,12 +15,12 @@ not_found do
   erb :notfound
 end
 
+def db_connect
+  PG.connect(dbname: 'memodb')
+end
+
 # Database Process
 class Database
-  def db_connect
-    PG.connect(dbname: 'memodb')
-  end
-
   def select_memo_titles
     data_list = []
     w_sql = 'SELECT id, title FROM memos ORDER BY registered_at'
@@ -54,22 +54,6 @@ class Database
 end
 
 helpers do
-  def read_data
-    File.open('data.json', 'r') do |f|
-      file_data = f.read
-
-      begin
-        JSON.parse(file_data)
-      rescue JSON::ParserError
-        []
-      end
-    end
-  end
-
-  def save_data(array_data)
-    File.open('data.json', 'w') { |file| JSON.dump(array_data, file) }
-  end
-
   def escape_html(str)
     Rack::Utils.escape_html(str)
   end
