@@ -98,7 +98,7 @@ get '/memos/:id' do
   database = Database.new
   memo = database.select_memo(params['id'])
 
-  if memo.nil?
+  if memo.none?
     erb :notfound
   else
     memo.each { |record| @memo = record }
