@@ -32,9 +32,9 @@ class Database
     data_list
   end
 
-  def insert_new_memo(id, title, content, registered_at)
+  def insert_new_memo(id, title, contents, registered_at)
     w_sql = 'INSERT INTO memos VALUES ($1, $2, $3, $4)'
-    db_connect.exec(w_sql, [id, title, content, registered_at])
+    db_connect.exec(w_sql, [id, title, contents, registered_at])
   end
 
   def select_memo(id)
@@ -46,6 +46,12 @@ class Database
     w_sql = 'DELETE FROM memos WHERE id = $1'
     db_connect.exec(w_sql, [id])
   end
+
+  def update_memo(id, title, contents, registerd_at)
+    w_sql = 'UPDATE memos SET title = $1, contents = $2, registered_at = $3 WHERE id = $4'
+    db_connect.exec(w_sql, [title, contents, registerd_at, id])
+  end
+
 end
 
 helpers do
@@ -120,13 +126,13 @@ get '/memos/:id/edit' do
 end
 
 patch '/memos/:id' do
-  data_list = read_data
-  target_index = data_list.find_index { |record| record['id'] == params['id'] }
-  change_data = data_list[target_index]
-  change_data['title'] = params['edit_title']
-  change_data['content'] = params['edit_content']
-  change_data['registerd_at'] = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+  database = Database.new
+  database.update_memo(
+    params['id'],
+    params['edit_title'],
+    params['edit_content'],
+    Time.now.strftime('%Y-%m-%d %H:%M:%S')
+  )
 
-  save_data(data_list)
   redirect to('/memos')
 end
