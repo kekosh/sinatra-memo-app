@@ -113,7 +113,9 @@ delete '/memos/:id' do
 end
 
 get '/memos/:id/edit' do
-  @memo = read_data.find { |record| record['id'] == params['id'] }
+  database = Database.new
+  memo = database.select_memo(params['id'])
+  memo.each { |record| @memo = record }
   erb :edit
 end
 
