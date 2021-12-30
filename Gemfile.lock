@@ -21,7 +21,7 @@ GEM
       sinatra (= 2.1.0)
       tilt (~> 2.0)
     tilt (2.0.10)
-    webrick (1.4.4)
+    webrick (1.7.0)
 
 PLATFORMS
   universal-darwin-20

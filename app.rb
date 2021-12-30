@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'securerandom'
 require 'json'
-require 'Rack'
+require 'rack'
 require 'pg'
 
 # Database Process

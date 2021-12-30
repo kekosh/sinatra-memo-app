@@ -11,7 +11,7 @@ Sinatra でシンプルな Web アプリを作ろう　課題成果物
 ### 1.`git clone`コマンドで当リポジトリのクローンをローカルに作成する。
 
 ```
-$git clone https://github.com/kekosh/sinatra-memo-app.git
+$ git clone https://github.com/kekosh/sinatra-memo-app.git
 ```
 
 ### 2.クローンしたローカルリポジトリのルートフォルダに移動する。
@@ -21,5 +21,5 @@ $git clone https://github.com/kekosh/sinatra-memo-app.git
 ### 4.bundler で`app.rb`を実行する。
 
 ```
-$bundle exec ruby app.rb
+$ bundle exec ruby app.rb
 ```
