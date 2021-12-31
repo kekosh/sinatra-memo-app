@@ -1,0 +1,33 @@
+<body>
+  <!-- メインヘッダー -->
+  <div>
+    <header><h1>メモアプリ</h1></header>
+  </div>
+  <!-- ページヘッダー -->
+  <div class="h-container">
+    <h2>新規追加</h2>
+    <form action="/memos" method="GET">
+      <button type="submit" id="btn_return">戻る</button>
+    </form>
+  </div>
+  <!-- コンテンツ -->
+  <section>
+    <form action="/memos" method="POST">
+      <div class="v-container">
+        <label for="input_title">タイトル</label>
+        <input type="text" name="input_title" id="input_title" required>
+      </div>
+      <div class="v-container">
+        <label for="input_content">内容</label>
+        <textarea
+          name="input_content"
+          id="input_content"
+          cols="50"
+          rows="10"
+          wrap="soft"
+        ></textarea>
+      </div>
+      <button type="submit" id="btn_regist">登録</button>
+    </form>
+  </section>
+</body>

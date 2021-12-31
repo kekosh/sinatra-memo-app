@@ -1,0 +1,34 @@
+<body>
+  <!-- メインヘッダー -->
+  <div>
+    <header><h1>メモアプリ</h1></header>
+  </div>
+  <!-- ページヘッダー -->
+  <div class="h-container">
+    <h2>変更</h2>
+    <form action="/memos" method="GET">
+      <button type="submit" id="btn_return">キャンセル</button>
+    </form>
+  </div>
+  <!-- コンテンツ -->
+  <section>
+    <form action="/memos/<%= @memo['id'] %>" method="POST">
+      <div class="v-container">
+        <label for="edit_title">タイトル</label>
+        <input type="text" name="edit_title" id="edit_title" value=<%= escape_html(@memo['title']) %> required>
+      </div>
+      <div class="v-container">
+        <label for="edit_content">内容</label>
+        <textarea
+          name="edit_content"
+          id="edit_content"
+          cols="50"
+          rows="10"
+          wrap="soft"
+        ><%= escape_html(@memo['content']) %></textarea>
+      </div>
+      <button type="submit" id="btn_regist">登録</button>
+      <input type="hidden" name="_method" value="PATCH">
+    </form>
+  </section>
+</body>
